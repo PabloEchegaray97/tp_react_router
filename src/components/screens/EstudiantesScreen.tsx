@@ -64,10 +64,15 @@ export const EstudiantesScreen = () => {
     return (
         <div className={styles.container}>
             <div className={styles.buttonContainer}>
-                <button className='btn outlined mb-1' onClick={() => navigate('/cursos')}>Volver a Cursos</button>
+                <button className='btn outlined' onClick={() => navigate('/cursos')}>Volver a Cursos</button>
             </div>
-            <h2>Estudiantes de {curso.nombre}</h2>
+            <h2 className={styles.mb_1}>Estudiantes de {curso.nombre}</h2>
             {sortedEstudiantes.length > 0 ? (
+                <>
+                <div className={styles.info}>
+                    <p>Total de estudiantes: {sortedEstudiantes.length}</p>
+                    <p>Curso ID: {curso.id}</p>
+                    </div>
                 <ul className={styles.list}>
                     {sortedEstudiantes.map(est => (
                         <li key={est.id}>
@@ -75,6 +80,7 @@ export const EstudiantesScreen = () => {
                         </li>
                     ))}
                 </ul>
+                </>
             ) : (
                 <p>No hay estudiantes registrados en este curso.</p>
             )}

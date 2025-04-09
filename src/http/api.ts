@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ICurso } from '../types/models';
 
-const API_URL = 'http://localhost:3000'; // json-server corre en el puerto 3000
+const API_URL = 'http://localhost:3000'; // json-server en el puerto 3000
 
 export const getCursos = async (): Promise<ICurso[]> => {
     try {

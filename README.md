@@ -1,54 +1,54 @@
-# React + TypeScript + Vite
+# Aplicación de Gestión de Cursos y Estudiantes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Descripción
+Aplicación web desarrollada en React que permite visualizar cursos y sus estudiantes asociados, consumiendo datos desde un JSON Server. Implementa rutas dinámicas y query params para mantener la persistencia de las vistas.
 
-Currently, two official plugins are available:
+## ⚡ Funcionalidades Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Vista de Cursos (/cursos)
+- Listado de cursos disponibles en formato de tarjetas
+- Cada tarjeta muestra:
+  - Nombre del curso
+  - Cantidad total de alumnos
+  - Botón para ver estudiantes del curso
 
-## Expanding the ESLint configuration
+### Vista de Estudiantes (/estudiantes?curso=ID) 
+- Muestra los estudiantes filtrados por curso seleccionado
+- Mantiene el curso activo al recargar la página
+- Manejo de estado cuando no hay curso seleccionado
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tecnologías Utilizadas
+- React con TypeScript
+- React Router DOM v6 
+- Fetch API para consumo de datos
+- JSON Server como backend
+- Bootstrap para estilos
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Instalación
+
+1. Clonar el repositorio
+```bash
+git clone [URL_REPOSITORIO]
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Instalar dependencias
+```bash
+npm install
 ```
+
+3. Iniciar JSON Server
+```bash
+npm run server
+```
+
+4. Iniciar aplicación
+```bash
+npm run dev
+```
+
+### 🔧 Características Técnicas
+- Uso de Hooks (useEffect, useState)
+- Implementación de React Router para navegación
+- Query params para persistencia de datos
+- Diseño responsive
+- Manejo de estados y efectos
