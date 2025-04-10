@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { getCursoById } from '../../http/api';
 import { ICurso } from '../../types/models';
+import { EstudianteCard } from '../ui/EstudianteCard';
 import styles from './Screens.module.css';
 
 export const EstudiantesScreen = () => {
@@ -13,6 +14,7 @@ export const EstudiantesScreen = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        //fetchCursoData es una funcion asincrona que se encarga de obtener los datos del curso
         const fetchCursoData = async () => {
             if (!cursoIdParam) {
                 setError('No se especificó un ID de curso.');
@@ -30,7 +32,7 @@ export const EstudiantesScreen = () => {
             try {
                 setLoading(true);
                 const cursoEncontrado = await getCursoById(id);
-
+                
                 if (cursoEncontrado) {
                     setCurso(cursoEncontrado);
                     setError(null);
@@ -43,13 +45,14 @@ export const EstudiantesScreen = () => {
                 console.error('Error fetching curso data:', err);
                 setCurso(null);
             } finally {
+
                 setLoading(false);
             }
         };
-
+        //se ejecuta la funcion fetchCursoData si el cursoIdParam cambia o se renderiza el componente
         fetchCursoData();
     }, [cursoIdParam]);
-
+    //ordenar estudiantes por nombre para que se muestren alfabeticamente
     const sortedEstudiantes = useMemo(() => {
         if (!curso || !curso.estudiantes) {
             return [];
@@ -59,6 +62,7 @@ export const EstudiantesScreen = () => {
 
     if (loading) return <div className={styles.container}>Cargando estudiantes...</div>;
     if (error) return <div className={styles.container}>{error}</div>;
+    //si no se encuentra el curso, se muestra un mensaje
     if (!curso) return <div className={styles.container}>Curso no encontrado.</div>;
 
     return (
@@ -72,14 +76,13 @@ export const EstudiantesScreen = () => {
                 <div className={styles.info}>
                     <p>Total de estudiantes: {sortedEstudiantes.length}</p>
                     <p>Curso ID: {curso.id}</p>
-                    </div>
-                <ul className={styles.list}>
+                </div>
+                <div className={styles.grid}>
                     {sortedEstudiantes.map(est => (
-                        <li key={est.id}>
-                            ID: {est.id} - {est.nombre} (Edad: {est.edad})
-                        </li>
+                        //pasamos el estudiante como prop a EstudianteCard y le pasamos el key para que se renderice correctamente
+                        <EstudianteCard key={est.id} estudiante={est} />
                     ))}
-                </ul>
+                </div>
                 </>
             ) : (
                 <p>No hay estudiantes registrados en este curso.</p>
