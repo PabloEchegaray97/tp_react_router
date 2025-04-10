@@ -3,11 +3,14 @@ import { ICurso } from '../types/models';
 
 const API_URL = 'http://localhost:3000'; // json-server en el puerto 3000
 
+// obtener todos los cursos
 export const getCursos = async (): Promise<ICurso[]> => {
     try {
+        // hacemos la petición y tomamos el primer elemento si existe
         const response = await axios.get<ICurso[]>(`${API_URL}/cursos`);
         return response.data;
     } catch (error) {
+        // si ocurre un error en la petición (ej: red), lo logueamos y retornamos null
         console.error("Error fetching cursos:", error);
         throw error;
     }
