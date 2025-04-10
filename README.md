@@ -38,7 +38,7 @@ npm install
 
 3. Iniciar JSON Server
 ```bash
-npm run server
+npm run dbDev
 ```
 
 4. Iniciar aplicación
