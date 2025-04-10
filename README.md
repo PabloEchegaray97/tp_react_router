@@ -22,8 +22,7 @@ Aplicación web desarrollada en React que permite visualizar cursos y sus estudi
 - React Router DOM v6 
 - Fetch API para consumo de datos
 - JSON Server como backend
-- Bootstrap para estilos
-
+- 
 ## 🚀 Instalación
 
 1. Clonar el repositorio
